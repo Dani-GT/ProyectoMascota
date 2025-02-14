@@ -53,15 +53,16 @@ public class Perro {
         this.estadoAnimo = estadoAnimo;
     }
 
-    public void comer (int cantidadComida) {
+    public void comer () {
 
         if(this.nivelHambre<=0){
             System.out.println ("No tengo hambre cansino");
-            this.estadoAnimo= "Molesto";
+            this.estadoAnimo = "Molesto";
         } else {
-            this.setNivelHambre(this.nivelHambre-cantidadComida);
-            if(this.nivelHambre<0){this.nivelHambre=0;
-            }
+            this.setNivelHambre(this.nivelHambre-20);
+            this.setNivelEnergia(+10);
+            if(this.nivelHambre<0)
+            {this.nivelHambre=0;}
     }
 
     public void jugar () {
