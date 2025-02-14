@@ -53,10 +53,15 @@ public class Perro {
         this.estadoAnimo = estadoAnimo;
     }
 
-    public void comer () {
-        this.nivelHambre = 0;
-        this.nivelEnergia += 10;
-        this.estadoAnimo = "Feliz";
+    public void comer (int cantidadComida) {
+
+        if(this.nivelHambre<=0){
+            System.out.println ("No tengo hambre cansino");
+            this.estadoAnimo= "Molesto";
+        } else {
+            this.setNivelHambre(this.nivelHambre-cantidadComida);
+            if(this.nivelHambre<0){this.nivelHambre=0;
+            }
     }
 
     public void jugar () {
@@ -70,13 +75,4 @@ public class Perro {
         this.estadoAnimo = "Feliz";
     }
 
-    @Override
-    public String toString() {
-        return "Perro{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                ", nivelEnergia=" + nivelEnergia +
-                ", nivelHambre=" + nivelHambre +
-                ", estadoAnimo='" + estadoAnimo + '\'' +
-                '}';
-    }}
+    }
