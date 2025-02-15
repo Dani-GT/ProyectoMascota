@@ -4,13 +4,14 @@ public class Perro {
     private int nivelEnergia;
     private int nivelHambre;
     private String estadoAnimo;
+    public static int contadorPerro = 0;
 
-    public Perro(String nombre, int edad, int nivelEnergia, int nivelHambre, String estadoAnimo) {
+    public Perro(String nombre) {
         this.nombre = nombre;
-        this.edad = edad;
-        this.nivelEnergia = nivelEnergia;
-        this.nivelHambre = nivelHambre;
-        this.estadoAnimo = estadoAnimo;
+        this.edad = 1;
+        this.nivelEnergia = 100;
+        this.nivelHambre = 0;
+        this.estadoAnimo = "Feliz";
     }
 
     public String getNombre() {
@@ -53,27 +54,67 @@ public class Perro {
         this.estadoAnimo = estadoAnimo;
     }
 
+    public int getContadorPerro() {
+        return contadorPerro;
+    }
+
+    public void setContadorPerro(int contadorPerro) {
+        this.contadorPerro = contadorPerro;
+    }
+
     public void comer () {
-
-        if(this.nivelHambre<=0){
-            System.out.println ("No tengo hambre cansino");
-            this.estadoAnimo = "Molesto";
+        if (this.nivelHambre <= 0) {
+            System.out.println("No tengo hambre cansino");
+            this.setEstadoAnimo("Molesto");
         } else {
-            this.setNivelHambre(this.nivelHambre-20);
+            this.setNivelHambre(this.nivelHambre - 20);
+            this.setEstadoAnimo("Feliz, barriguita llena, corazon contento");
             this.setNivelEnergia(+10);
-            if(this.nivelHambre<0)
-            {this.nivelHambre=0;}
+            if (this.nivelHambre < 0) {
+                this.nivelHambre = 0;
+            }
+        }
     }
 
-    public void jugar () {
-        this.nivelHambre += 10;
-        this.nivelEnergia -= 10;
-        this.estadoAnimo = "Feliz";
-    }
+        public void jugar () {
+            if (this.nivelEnergia < 20) {
+                System.out.println("Estoy reventado dejame descansar por favor");
+                this.setEstadoAnimo("Molesto");
+            } else {
+                this.setNivelEnergia(this.nivelEnergia - 10);
+                if (this.nivelEnergia < 0) {
+                    this.nivelEnergia = 0;
+                }
+                this.setNivelHambre(this.nivelHambre + 10);
+                this.setEstadoAnimo("Feliz,me encanta jugar contigo");
+            }
+        }
 
-    public void dormir () {
-        this.nivelEnergia = 100;
-        this.estadoAnimo = "Feliz";
-    }
+
+        public void dormir () {
+
+            if (this.nivelEnergia == 100) {
+                System.out.println("No tengo sueño");
+                this.setEstadoAnimo("Molesto");
+            } else {
+                this.setNivelEnergia(this.nivelEnergia + 20);
+                if (this.nivelEnergia > 100) {
+                    this.nivelEnergia = 100;
+                }
+                this.setNivelHambre(this.nivelHambre + 10);
+                this.setEstadoAnimo("Pochito, me encanta dormir");
+            }
+        }
+
+        public String toString () {
+            return "Estado de tu mascota{" +
+                    "nombre='" + nombre + '\'' +
+                    ", edad=" + edad + '\'' +
+                    ", nivelEnergia=" + nivelEnergia + '\'' +
+                    ", nivelHambre=" + nivelHambre + '\'' +
+                    ", estadoAnimo='" + estadoAnimo + '\'' +
+                    '}';
+        }
+
 
     }
