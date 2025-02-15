@@ -1,5 +1,6 @@
 public class Perro {
     private String nombre;
+    private String raza;
     private int edad;
     private int nivelEnergia;
     private int nivelHambre;
@@ -12,6 +13,32 @@ public class Perro {
         this.nivelEnergia = 100;
         this.nivelHambre = 0;
         this.estadoAnimo = "Feliz";
+        contadorPerro++;
+    }
+    public Perro(){
+        this.edad=5;
+        this.nivelEnergia=70;
+        this.nivelHambre=30;
+        this.estadoAnimo="Feliz";
+        contadorPerro++;
+    };
+
+    public Perro (String nombre,String raza, int edad, int nivelEnergia, int nivelHambre, String estadoAnimo){
+        this.edad=edad;
+        this.nivelEnergia=nivelEnergia;
+        this.nivelHambre=nivelHambre;
+        this.nombre=nombre;
+        this.estadoAnimo=estadoAnimo;
+        contadorPerro++;
+    }
+
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
     }
 
     public String getNombre() {
@@ -64,12 +91,13 @@ public class Perro {
 
     public void comer () {
         if (this.nivelHambre <= 0) {
+            System.out.println("***********************************************************************************************");
             System.out.println("No tengo hambre cansino");
             this.setEstadoAnimo("Molesto");
         } else {
             this.setNivelHambre(this.nivelHambre - 20);
             this.setEstadoAnimo("Feliz, barriguita llena, corazon contento");
-            this.setNivelEnergia(+10);
+            this.setNivelEnergia(+15);
             if (this.nivelHambre < 0) {
                 this.nivelHambre = 0;
             }
@@ -78,15 +106,16 @@ public class Perro {
 
         public void jugar () {
             if (this.nivelEnergia < 20) {
+                System.out.println("***********************************************************************************************");
                 System.out.println("Estoy reventado dejame descansar por favor");
-                this.setEstadoAnimo("Molesto");
+                this.setEstadoAnimo("Cansado");
             } else {
                 this.setNivelEnergia(this.nivelEnergia - 10);
                 if (this.nivelEnergia < 0) {
                     this.nivelEnergia = 0;
                 }
-                this.setNivelHambre(this.nivelHambre + 10);
-                this.setEstadoAnimo("Feliz,me encanta jugar contigo");
+                this.setNivelHambre(this.nivelHambre + 20);
+                this.setEstadoAnimo("Feliz, me encanta jugar contigo");
             }
         }
 
@@ -106,15 +135,13 @@ public class Perro {
             }
         }
 
-        public String toString () {
-            return "Estado de tu mascota{" +
-                    "nombre='" + nombre + '\'' +
-                    ", edad=" + edad + '\'' +
-                    ", nivelEnergia=" + nivelEnergia + '\'' +
-                    ", nivelHambre=" + nivelHambre + '\'' +
-                    ", estadoAnimo='" + estadoAnimo + '\'' +
-                    '}';
-        }
-
-
+    @Override
+    public String toString() {
+        return "Estado de tu mascota: " + this.nombre + "\n" +
+                "De raza: " + this.raza + "\n" +
+                "Edad: " + this.edad + " años\n" +
+                "Nivel de energía: " + this.nivelEnergia + "\n" +
+                "Nivel de hambre: " + this.nivelHambre + "\n" +
+                "Estado de ánimo: " + this.estadoAnimo;
+    }
     }
